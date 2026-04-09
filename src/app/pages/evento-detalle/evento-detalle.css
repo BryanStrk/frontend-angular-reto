@@ -1,0 +1,178 @@
+    .detalle-hero {
+    height: 420px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    }
+
+    .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.3));
+    }
+
+    .hero-content {
+    position: relative;
+    z-index: 1;
+    padding-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    }
+
+    .back-btn {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+    }
+
+    .back-btn:hover { color: white; }
+
+    .detalle-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: white;
+    }
+
+    .detalle-tipo {
+    color: var(--primary);
+    font-weight: 600;
+    }
+
+    .estado-badge {
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    }
+
+    .badge-activo { background: var(--badge-activo); color: white; }
+    .badge-agotado { background: var(--badge-agotado); color: white; }
+    .badge-cancelado { background: var(--badge-cancelado); color: white; }
+
+    .info-title {
+    color: white;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    }
+
+    .info-desc {
+    color: var(--text-muted);
+    line-height: 1.8;
+    }
+
+    .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    }
+    .info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    }
+
+    .info-icon { font-size: 1.3rem; }
+
+    .info-label {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    margin: 0;
+    }
+
+    .info-value {
+    color: white;
+    font-weight: 600;
+    margin: 0;
+    }
+
+    /* PANEL */
+    .reserva-panel {
+    background: var(--bg-card);
+    border-radius: 20px;
+    padding: 2rem;
+    position: sticky;
+    top: 20px;
+    }
+
+    .panel-title {
+    color: white;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    }
+
+    .panel-precio {
+    color: var(--primary);
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    }
+
+    .panel-precio small {
+    font-size: 1rem;
+    color: var(--text-muted);
+    }
+
+    .cantidad-control { margin-bottom: 1.5rem; }
+
+    .btn-cantidad {
+    background: #333;
+    color: white;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    }
+
+    .btn-cantidad:hover { background: var(--primary); }
+
+    .cantidad-value {
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 700;
+    min-width: 30px;
+    text-align: center;
+    }
+
+    .total-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+    margin-bottom: 1.5rem;
+    }
+
+    .total-precio {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 800;
+    }
+
+    .btn-reservar {
+    background: var(--primary-gradient);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 14px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    }
+
+    .btn-reservar:hover:not(:disabled) { opacity: 0.9; }
+    .btn-reservar:disabled {
+    background: #333;
+    color: #666;
+    cursor: not-allowed;
+    }

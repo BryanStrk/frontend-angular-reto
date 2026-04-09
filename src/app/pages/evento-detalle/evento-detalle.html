@@ -1,1 +1,86 @@
-<p>evento-detalle works!</p>
+    @if (evento) {
+    <!-- HERO -->
+    <div class="detalle-hero" [style.background-image]="getHeroStyle()">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+        <a routerLink="/eventos" class="back-btn">← Volver a eventos</a>
+        <span class="estado-badge mt-3" [ngClass]="getBadgeClass(evento.estado)">{{ evento.estado }}</span>
+        <h1 class="detalle-title">{{ evento.titulo }}</h1>
+        <p class="detalle-tipo">{{ evento.tipo }}</p>
+        </div>
+    </div>
+
+    <!-- CONTENIDO -->
+    <div class="container py-5">
+        <div class="row g-5">
+
+        <!-- INFO -->
+        <div class="col-lg-8">
+            <h3 class="info-title">Sobre el evento</h3>
+            <p class="info-desc">{{ evento.descripcion }}</p>
+
+            <div class="info-grid mt-4">
+            <div class="info-item">
+                <span class="info-icon">📅</span>
+                <div>
+                <p class="info-label">Fecha</p>
+                <p class="info-value">{{ evento.fecha }}</p>
+                </div>
+            </div>
+            <div class="info-item">
+                <span class="info-icon">⏰</span>
+                <div>
+                <p class="info-label">Hora</p>
+                <p class="info-value">{{ evento.hora }}</p>
+                </div>
+            </div>
+            <div class="info-item">
+                <span class="info-icon">📍</span>
+                <div>
+                <p class="info-label">Lugar</p>
+                <p class="info-value">{{ evento.lugar }}</p>
+                </div>
+            </div>
+            <div class="info-item">
+                <span class="info-icon">👥</span>
+                <div>
+                <p class="info-label">Disponibles</p>
+                <p class="info-value">{{ lugaresDisponibles }} lugares</p>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- PANEL RESERVA -->
+        <div class="col-lg-4">
+            <div class="reserva-panel">
+            <h4 class="panel-title">Reservar entradas</h4>
+            <p class="panel-precio">€{{ evento.precio }} <small>/ persona</small></p>
+
+            <div class="cantidad-control">
+                <p class="info-label mb-2">Cantidad (máx. 10)</p>
+                <div class="d-flex align-items-center gap-3">
+                <button class="btn-cantidad" (click)="decrementar()">−</button>
+                <span class="cantidad-value">{{ cantidadEntradas }}</span>
+                <button class="btn-cantidad" (click)="incrementar()">+</button>
+                </div>
+            </div>
+
+            <div class="total-box">
+                <span class="text-muted">Total</span>
+                <span class="total-precio">€{{ totalPrecio }}</span>
+            </div>
+
+            <button class="btn-reservar w-100" [disabled]="evento.estado !== 'ACTIVO'">
+                {{ evento.estado === 'ACTIVO' ? 'Reservar ahora' : 'No disponible' }}
+            </button>
+
+            @if (evento.estado !== 'ACTIVO') {
+                <p class="text-center text-muted mt-2" style="font-size: 0.85rem;">Este evento no acepta reservas</p>
+            }
+            </div>
+        </div>
+
+        </div>
+    </div>
+    }
