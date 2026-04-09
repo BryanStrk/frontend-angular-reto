@@ -1,2 +1,27 @@
-/* You can add global styles to this file, and also import other style files */
-@import "bootstrap/dist/css/bootstrap.min.css";
+    /* You can add global styles to this file, and also import other style files */
+    @import "bootstrap/dist/css/bootstrap.min.css";
+
+    :root {
+    --primary: #7C3AED;
+    --primary-gradient: linear-gradient(135deg, #7C3AED, #2563EB);
+    --bg-dark: #0F0F0F;
+    --bg-card: #1A1A2E;
+    --bg-navbar: #111111;
+    --text-white: #FFFFFF;
+    --text-muted: #9CA3AF;
+    --badge-activo: #10B981;
+    --badge-agotado: #EF4444;
+    --badge-cancelado: #6B7280;
+    }
+
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    }
+
+    body {
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    font-family: 'Inter', sans-serif;
+    }

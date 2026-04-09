@@ -1,0 +1,39 @@
+    .navbar {
+    border-bottom: 1px solid #222;
+    }
+
+    .brand-name {
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 1.3rem;
+    }
+
+    .logo-icon {
+    font-size: 1.5rem;
+    }
+
+    .nav-link {
+    color: var(--text-white) !important;
+    font-weight: 500;
+    transition: color 0.2s;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+    color: var(--primary) !important;
+    }
+
+    .btn-primary-custom {
+    background: var(--primary-gradient);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 8px 24px;
+    font-weight: 600;
+    transition: opacity 0.2s;
+    }
+
+    .btn-primary-custom:hover {
+    opacity: 0.9;
+    color: white;
+    }
