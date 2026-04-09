@@ -1,1 +1,61 @@
-<p>eventos works!</p>
+    <div class="container py-5">
+
+    <h2 class="section-title mb-4">Todos los eventos</h2>
+
+    <!-- FILTROS -->
+    <div class="filtros mb-5">
+        <div class="d-flex flex-wrap gap-3">
+        <div>
+            <label class="filter-label">Estado</label>
+            <select class="filter-select" [(ngModel)]="filtroEstado">
+            <option value="TODOS">Todos</option>
+            <option value="ACTIVO">Activo</option>
+            <option value="AGOTADO">Agotado</option>
+            <option value="CANCELADO">Cancelado</option>
+            </select>
+        </div>
+        <div>
+            <label class="filter-label">Tipo</label>
+            <select class="filter-select" [(ngModel)]="filtroTipo">
+            <option value="TODOS">Todos</option>
+            <option value="Música">Música</option>
+            <option value="Tecnología">Tecnología</option>
+            <option value="Entretenimiento">Entretenimiento</option>
+            <option value="E-Sports">E-Sports</option>
+            <option value="Gastronomía">Gastronomía</option>
+            </select>
+        </div>
+        </div>
+    </div>
+
+    <!-- GRID -->
+    <div class="row g-4">
+        @for (evento of eventosFiltrados; track evento.id) {
+        <div class="col-lg-4 col-md-6">
+            <div class="evento-card" [routerLink]="['/eventos', evento.id]">
+            <div class="card-img-wrapper">
+                <img [src]="evento.imagen" [alt]="evento.titulo" class="card-img"/>
+                <span class="estado-badge" [ngClass]="getBadgeClass(evento.estado)">{{ evento.estado }}</span>
+            </div>
+            <div class="card-body-custom">
+                <h5 class="card-title-custom">{{ evento.titulo }}</h5>
+                <p class="card-info">📅 {{ evento.fecha }} • {{ evento.hora }}</p>
+                <p class="card-info">📍 {{ evento.lugar }}</p>
+                <p class="card-info">👥 {{ evento.aforo }} lugares disponibles</p>
+                <div class="card-footer-custom">
+                <span class="precio">€{{ evento.precio }}<small> / persona</small></span>
+                <span class="tipo-badge">{{ evento.tipo }}</span>
+                </div>
+            </div>
+            </div>
+        </div>
+        }
+
+        @if (eventosFiltrados.length === 0) {
+        <div class="col-12 text-center py-5">
+            <p class="text-muted">No hay eventos con los filtros seleccionados.</p>
+        </div>
+        }
+    </div>
+
+    </div>

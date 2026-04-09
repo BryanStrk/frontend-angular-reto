@@ -1,0 +1,206 @@
+    /* HERO */
+    .hero {
+    position: relative;
+    height: 550px;
+    background: url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1600') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    }
+
+    .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+    }
+
+    .hero-content {
+    position: relative;
+    z-index: 1;
+    }
+
+    .hero-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: white;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    }
+
+    .hero-highlight {
+    color: var(--primary);
+    }
+
+    .hero-subtitle {
+    color: #ccc;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    }
+
+    .search-bar {
+    display: flex;
+    align-items: center;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50px;
+    padding: 8px 8px 8px 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    max-width: 600px;
+    gap: 10px;
+    }
+
+    .search-icon { font-size: 1rem; }
+
+    .search-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 1rem;
+    }
+
+    .search-input::placeholder { color: #aaa; }
+
+    .btn-search {
+    background: var(--primary-gradient);
+    color: white;
+    border: none;
+    border-radius: 40px;
+    padding: 10px 24px;
+    font-weight: 600;
+    cursor: pointer;
+    }
+
+    /* SECCIONES */
+    .section { margin-top: 60px; }
+
+    .section-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: white;
+    }
+
+    .ver-todos {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+    }
+
+    /* CARDS */
+    .evento-card {
+    background: var(--bg-card);
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    height: 100%;
+    }
+
+    .evento-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(124, 58, 237, 0.3);
+    }
+
+    .card-img-wrapper {
+    position: relative;
+    }
+
+    .card-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    }
+
+    .estado-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    }
+
+    .badge-activo { background: var(--badge-activo); color: white; }
+    .badge-agotado { background: var(--badge-agotado); color: white; }
+    .badge-cancelado { background: var(--badge-cancelado); color: white; }
+
+    .card-body-custom {
+    padding: 1rem;
+    }
+
+    .card-title-custom {
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+    }
+
+    .card-info {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-bottom: 0.3rem;
+    }
+
+    .card-footer-custom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid #333;
+    }
+
+    .precio {
+    color: var(--primary);
+    font-size: 1.3rem;
+    font-weight: 700;
+    }
+
+    .precio small {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    }
+
+    .tipo-badge {
+    background: rgba(124, 58, 237, 0.2);
+    color: var(--primary);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    }
+
+    /* CTA */
+    .cta-box {
+    background: var(--primary-gradient);
+    border-radius: 20px;
+    padding: 3rem;
+    text-align: center;
+    margin-top: 60px;
+    }
+
+    .cta-box h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 1rem;
+    }
+
+    .cta-box p {
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 1.5rem;
+    }
+
+    .btn-cta {
+    background: white;
+    color: var(--primary);
+    border: none;
+    border-radius: 40px;
+    padding: 12px 32px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    }
+
+    .btn-cta:hover { opacity: 0.9; }
