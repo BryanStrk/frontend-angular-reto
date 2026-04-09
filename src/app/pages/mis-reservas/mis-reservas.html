@@ -1,1 +1,62 @@
-<p>mis-reservas works!</p>
+    <div class="container py-5">
+
+    <h2 class="section-title mb-5">Mis Reservas</h2>
+
+    <!-- STATS -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-4">
+        <div class="stat-card">
+            <span class="stat-icon">🎟️</span>
+            <div>
+            <p class="stat-label">Total reservas</p>
+            <p class="stat-value">{{ totalReservas }}</p>
+            </div>
+        </div>
+        </div>
+        <div class="col-md-4">
+        <div class="stat-card">
+            <span class="stat-icon">✅</span>
+            <div>
+            <p class="stat-label">Próximos eventos</p>
+            <p class="stat-value">{{ reservasActivas }}</p>
+            </div>
+        </div>
+        </div>
+        <div class="col-md-4">
+        <div class="stat-card">
+            <span class="stat-icon">💶</span>
+            <div>
+            <p class="stat-label">Total gastado</p>
+            <p class="stat-value">€{{ totalGastado }}</p>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- LISTA -->
+    @for (reserva of reservas; track reserva.id) {
+        <div class="reserva-item">
+        <img [src]="reserva.imagen" [alt]="reserva.evento" class="reserva-img"/>
+        <div class="reserva-info">
+            <h5 class="reserva-titulo">{{ reserva.evento }}</h5>
+            <p class="reserva-meta">📅 {{ reserva.fecha }} • {{ reserva.hora }}</p>
+            <p class="reserva-meta">📍 {{ reserva.lugar }}</p>
+            <p class="reserva-meta">🎟️ {{ reserva.entradas }} entrada(s) • €{{ reserva.precio * reserva.entradas }} total</p>
+        </div>
+        <div class="reserva-actions">
+            <span class="estado-badge" [ngClass]="getBadgeClass(reserva.estado)">{{ reserva.estado }}</span>
+            @if (reserva.estado === 'CONFIRMADA') {
+            <button class="btn-cancelar" (click)="cancelar(reserva.id)">Cancelar</button>
+            }
+        </div>
+        </div>
+    }
+
+    @if (reservas.length === 0) {
+        <div class="text-center py-5">
+        <p class="text-muted">No tienes reservas aún.</p>
+        <a routerLink="/eventos" class="btn-ver-eventos">Ver eventos</a>
+        </div>
+    }
+
+    </div>
