@@ -1,106 +1,75 @@
-    .section-title {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: white;
-    }
-
-    .filter-label {
-    display: block;
+    .eventos-count {
     color: var(--text-muted);
-    font-size: 0.85rem;
-    margin-bottom: 6px;
+    font-size: 0.95rem;
     }
 
-    .filter-select {
-    background: var(--bg-card);
-    color: white;
-    border: 1px solid #333;
-    border-radius: 10px;
-    padding: 8px 16px;
-    outline: none;
-    cursor: pointer;
-    }
-
-    .filter-select:focus {
-    border-color: var(--primary);
-    }
-
-    .evento-card {
-    background: var(--bg-card);
-    border-radius: 16px;
+    .filtros-panel {
+    background: rgba(26, 26, 46, 0.6);
+    border: 1px solid #222;
+    border-radius: 14px;
     overflow: hidden;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-    height: 100%;
     }
 
-    .evento-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(124, 58, 237, 0.3);
-    }
-
-    .card-img-wrapper { position: relative; }
-
-    .card-img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    }
-
-    .estado-badge {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    }
-
-    .badge-activo { background: var(--badge-activo); color: white; }
-    .badge-agotado { background: var(--badge-agotado); color: white; }
-    .badge-cancelado { background: var(--badge-cancelado); color: white; }
-
-    .card-body-custom { padding: 1rem; }
-
-    .card-title-custom {
-    color: white;
-    font-weight: 700;
-    font-size: 1rem;
-    margin-bottom: 0.75rem;
-    }
-
-    .card-info {
-    color: var(--text-muted);
-    font-size: 0.85rem;
-    margin-bottom: 0.3rem;
-    }
-
-    .card-footer-custom {
+    .filtros-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 1rem;
-    padding-top: 0.75rem;
-    border-top: 1px solid #333;
-    }
-
-    .precio {
-    color: var(--primary);
-    font-size: 1.3rem;
-    font-weight: 700;
-    }
-
-    .precio small {
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    }
-
-    .tipo-badge {
-    background: rgba(124, 58, 237, 0.2);
-    color: var(--primary);
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 0.75rem;
+    padding: 1rem 1.25rem;
+    cursor: pointer;
+    color: white;
     font-weight: 600;
+    transition: background 0.2s;
+    }
+
+    .filtros-header:hover {
+    background: rgba(255,255,255,0.05);
+    }
+
+    .filtros-body {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    border-top: 1px solid #222;
+    }
+
+    .filtro-grupo { display: flex; flex-direction: column; gap: 0.5rem; }
+
+    .filtro-titulo {
+    color: white;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    font-size: 0.95rem;
+    }
+
+    .filtro-radio {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 0.9rem;
+    }
+
+    .filtro-radio input[type="radio"] {
+    accent-color: var(--primary);
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    }
+
+    .filtro-radio:hover span { color: white; }
+
+    .precio-slider {
+    width: 100%;
+    accent-color: var(--primary);
+    cursor: pointer;
+    }
+
+    .precio-range-labels {
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: 4px;
     }
