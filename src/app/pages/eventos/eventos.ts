@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './eventos.css'
 })
 export class EventosComponent {
-  filtrosAbiertos = true;
+  filtrosAbiertos = false;
   filtroEstado = 'TODOS';
   filtroTipo = 'TODOS';
   precioMax = 200;
