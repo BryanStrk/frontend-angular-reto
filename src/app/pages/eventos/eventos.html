@@ -1,82 +1,110 @@
-    <div class="container py-5">
+<div class="container py-5">
 
-    <h2 class="section-title">Todos los eventos</h2>
-    <p class="eventos-count mb-4">{{ eventosFiltrados.length }} eventos encontrados</p>
+  <h2 class="section-title">Todos los eventos</h2>
+  <p class="eventos-count mb-4">{{ eventosFiltrados.length }} eventos encontrados</p>
 
-    <!-- FILTROS -->
-    <div class="filtros-panel mb-4">
-        <div class="filtros-header" (click)="filtrosAbiertos = !filtrosAbiertos">
-        <span><i class="bi bi-funnel me-2"></i>Filtros</span>
-        <i class="bi" [ngClass]="filtrosAbiertos ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
+  <div class="eventos-layout">
+
+    <!-- SIDEBAR FILTROS (desktop) -->
+    <aside class="filtros-sidebar">
+      <div class="filtro-grupo">
+        <p class="filtro-titulo">Categoría</p>
+        @for (tipo of tipos; track tipo) {
+          <label class="filtro-radio">
+            <input type="radio" name="tipo" [value]="tipo === 'Todos' ? 'TODOS' : tipo" [(ngModel)]="filtroTipo"/>
+            <span>{{ tipo }}</span>
+          </label>
+        }
+      </div>
+      <div class="filtro-grupo mt-4">
+        <p class="filtro-titulo">Estado</p>
+        @for (estado of estados; track estado) {
+          <label class="filtro-radio">
+            <input type="radio" name="estado" [value]="estado" [(ngModel)]="filtroEstado"/>
+            <span>{{ estado === 'TODOS' ? 'Todos' : estado }}</span>
+          </label>
+        }
+      </div>
+      <div class="filtro-grupo mt-4">
+        <p class="filtro-titulo">Rango de precio</p>
+        <input type="range" class="precio-slider" min="0" max="200" [(ngModel)]="precioMax"/>
+        <div class="precio-range-labels">
+          <span>€0</span>
+          <span>€{{ precioMax }}</span>
         </div>
+      </div>
+    </aside>
 
+    <!-- CONTENIDO -->
+    <div class="eventos-content">
+
+      <!-- FILTROS PANEL (móvil) -->
+      <div class="filtros-panel mb-4">
+        <div class="filtros-header" (click)="filtrosAbiertos = !filtrosAbiertos">
+          <span><i class="bi bi-funnel me-2"></i>Filtros</span>
+          <i class="bi" [ngClass]="filtrosAbiertos ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
+        </div>
         @if (filtrosAbiertos) {
-        <div class="filtros-body">
-
-            <!-- CATEGORÍA -->
+          <div class="filtros-body">
             <div class="filtro-grupo">
-            <p class="filtro-titulo">Categoría</p>
-            @for (tipo of tipos; track tipo) {
+              <p class="filtro-titulo">Categoría</p>
+              @for (tipo of tipos; track tipo) {
                 <label class="filtro-radio">
-                <input type="radio" name="tipo" [value]="tipo === 'Todos' ? 'TODOS' : tipo" [(ngModel)]="filtroTipo"/>
-                <span>{{ tipo }}</span>
+                  <input type="radio" name="tipo-mobile" [value]="tipo === 'Todos' ? 'TODOS' : tipo" [(ngModel)]="filtroTipo"/>
+                  <span>{{ tipo }}</span>
                 </label>
-            }
+              }
             </div>
-
-            <!-- ESTADO -->
             <div class="filtro-grupo">
-            <p class="filtro-titulo">Estado</p>
-            @for (estado of estados; track estado) {
+              <p class="filtro-titulo">Estado</p>
+              @for (estado of estados; track estado) {
                 <label class="filtro-radio">
-                <input type="radio" name="estado" [value]="estado" [(ngModel)]="filtroEstado"/>
-                <span>{{ estado === 'TODOS' ? 'Todos' : estado }}</span>
+                  <input type="radio" name="estado-mobile" [value]="estado" [(ngModel)]="filtroEstado"/>
+                  <span>{{ estado === 'TODOS' ? 'Todos' : estado }}</span>
                 </label>
-            }
+              }
             </div>
-
-            <!-- PRECIO -->
             <div class="filtro-grupo">
-            <p class="filtro-titulo">Rango de precio</p>
-            <input type="range" class="precio-slider" min="0" max="200" [(ngModel)]="precioMax"/>
-            <div class="precio-range-labels">
+              <p class="filtro-titulo">Rango de precio</p>
+              <input type="range" class="precio-slider" min="0" max="200" [(ngModel)]="precioMax"/>
+              <div class="precio-range-labels">
                 <span>€0</span>
                 <span>€{{ precioMax }}</span>
+              </div>
             </div>
-            </div>
-
-        </div>
+          </div>
         }
-    </div>
+      </div>
 
-    <!-- GRID -->
-    <div class="row g-4">
+      <!-- GRID -->
+      <div class="row g-4">
         @for (evento of eventosFiltrados; track evento.id) {
-        <div class="col-lg-4 col-md-6">
+          <div class="col-lg-4 col-md-6 col-12">
             <div class="evento-card" [routerLink]="['/eventos', evento.id]">
-            <div class="card-img-wrapper">
+              <div class="card-img-wrapper">
                 <img [src]="evento.imagen" [alt]="evento.titulo" class="card-img"/>
                 <span class="estado-badge" [ngClass]="getBadgeClass(evento.estado)">{{ evento.estado }}</span>
-            </div>
-            <div class="card-body-custom">
+              </div>
+              <div class="card-body-custom">
                 <h5 class="card-title-custom">{{ evento.titulo }}</h5>
                 <p class="card-info"><i class="bi bi-calendar-event me-1"></i>{{ evento.fecha }} • {{ evento.hora }}</p>
                 <p class="card-info"><i class="bi bi-geo-alt-fill me-1"></i>{{ evento.lugar }}</p>
                 <p class="card-info"><i class="bi bi-people-fill me-1"></i>{{ evento.aforo }} lugares disponibles</p>
                 <div class="card-footer-custom">
-                <span class="precio">€{{ evento.precio }}<small> / persona</small></span>
-                <span class="tipo-badge">{{ evento.tipo }}</span>
+                  <span class="precio">€{{ evento.precio }}<small> / persona</small></span>
+                  <span class="tipo-badge">{{ evento.tipo }}</span>
                 </div>
+              </div>
             </div>
-            </div>
-        </div>
+          </div>
         }
-
         @if (eventosFiltrados.length === 0) {
-        <div class="col-12 text-center py-5">
+          <div class="col-12 text-center py-5">
             <p class="text-muted">No hay eventos con los filtros seleccionados.</p>
-        </div>
+          </div>
         }
-    </div>
+      </div>
 
     </div>
+  </div>
+</div>
