@@ -10,8 +10,13 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './eventos.css'
 })
 export class EventosComponent {
+  filtrosAbiertos = true;
   filtroEstado = 'TODOS';
   filtroTipo = 'TODOS';
+  precioMax = 200;
+
+  tipos = ['Todos', 'Música', 'Tecnología', 'Entretenimiento', 'E-Sports', 'Gastronomía', 'Teatro', 'Deportes', 'Arte', 'Cine', 'Educación'];
+  estados = ['TODOS', 'ACTIVO', 'AGOTADO', 'CANCELADO'];
 
   eventos = [
     { id: 1, titulo: 'Concierto Rock Fest 2026', fecha: '15 jun 2026', hora: '18:00', lugar: 'Estadio Nacional, Madrid', precio: 85, tipo: 'Música', estado: 'ACTIVO', aforo: 450, imagen: 'https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?w=600' },
@@ -26,7 +31,8 @@ export class EventosComponent {
     return this.eventos.filter(e => {
       const matchEstado = this.filtroEstado === 'TODOS' || e.estado === this.filtroEstado;
       const matchTipo = this.filtroTipo === 'TODOS' || e.tipo === this.filtroTipo;
-      return matchEstado && matchTipo;
+      const matchPrecio = e.precio <= this.precioMax;
+      return matchEstado && matchTipo && matchPrecio;
     });
   }
 
