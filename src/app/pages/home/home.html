@@ -1,53 +1,101 @@
     <!-- HERO -->
     <section class="hero">
-    <div class="hero-overlay"></div>
+    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1600&q=80" class="hero-bg" alt="hero"/>
+    <div class="hero-overlay-left"></div>
+    <div class="hero-overlay-bottom"></div>
     <div class="container hero-content">
-        <h1 class="hero-title">Descubre los <span class="hero-highlight">mejores eventos</span></h1>
+        <h1 class="hero-title">
+        Descubre los <span class="hero-highlight">mejores eventos</span>
+        </h1>
         <p class="hero-subtitle">Encuentra y reserva experiencias increíbles cerca de ti</p>
         <div class="search-bar">
-        <span class="search-icon">🔍</span>
+        <span class="search-icon"><i class="bi bi-search"></i></span>
         <input type="text" placeholder="Buscar eventos, lugares, categorías..." class="search-input"/>
         <button class="btn-search">Buscar</button>
         </div>
     </div>
     </section>
 
-    <!-- EVENTOS DESTACADOS -->
-    <section class="section container">
-    <div class="d-flex justify-content-between align-items-center mb-4">
+    <!-- DESTACADOS -->
+    <section class="section">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="section-title">Eventos Destacados</h2>
-        <a routerLink="/eventos" class="ver-todos">Ver todos →</a>
-    </div>
-
-    <div class="row g-4">
-        @for (evento of eventosDestacados; track evento.id) {
-        <div class="col-lg-3 col-md-6">
-            <div class="evento-card" [routerLink]="['/eventos', evento.id]">
-            <div class="card-img-wrapper">
-                <img [src]="evento.imagen" [alt]="evento.titulo" class="card-img"/>
-                <span class="estado-badge" [ngClass]="getBadgeClass(evento.estado)">{{ evento.estado }}</span>
-            </div>
-            <div class="card-body-custom">
-                <h5 class="card-title-custom">{{ evento.titulo }}</h5>
-                <p class="card-info">📅 {{ evento.fecha }} • {{ evento.hora }}</p>
-                <p class="card-info">📍 {{ evento.lugar }}</p>
-                <p class="card-info">👥 {{ evento.aforo }} lugares disponibles</p>
-                <div class="card-footer-custom">
-                <span class="precio">€{{ evento.precio }}<small> / persona</small></span>
-                <span class="tipo-badge">{{ evento.tipo }}</span>
-                </div>
-            </div>
-            </div>
+        <div class="d-flex gap-2">
+            <button class="btn-scroll" (click)="scrollLeft()">‹</button>
+            <button class="btn-scroll" (click)="scrollRight()">›</button>
         </div>
+        </div>
+        <div class="scroll-container" #scrollRef>
+        @for (evento of eventosDestacados; track evento.id) {
+            <div class="scroll-item">
+            <a class="evento-card" [routerLink]="['/eventos', evento.id]">
+                <div class="card-img-wrapper">
+                <img [src]="evento.imagen" [alt]="evento.titulo" class="card-img"/>
+                <div class="card-img-gradient"></div>
+                <span class="estado-badge" [ngClass]="getBadgeClass(evento.estado)">{{ evento.estado }}</span>
+                </div>
+                <div class="card-body-custom">
+                <h5 class="card-title-custom">{{ evento.titulo }}</h5>
+                <p class="card-info"><span class="card-info-icon"><i class="bi bi-calendar-event"></i></span>{{ evento.fecha }} • {{ evento.hora }}</p>
+                <p class="card-info"><span class="card-info-icon"><i class="bi bi-geo-alt-fill"></i></span>{{ evento.lugar }}</p>
+                <p class="card-info"><span class="card-info-icon"><i class="bi bi-people-fill"></i></span>{{ evento.aforo }} lugares disponibles</p>
+
+                <div class="card-footer-custom">
+                    <span class="precio">€{{ evento.precio }}<small> / persona</small></span>
+                    <span class="tipo-badge">{{ evento.tipo }}</span>
+                </div>
+                </div>
+            </a>
+            </div>
         }
+        </div>
+    </div>
+    </section>
+
+    <!-- TODOS -->
+    <section class="section" style="padding-top: 0;">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="section-title">Todos los eventos</h2>
+        <a routerLink="/eventos" class="ver-todos">Ver todos →</a>
+        </div>
+        <div class="row g-4">
+        @for (evento of eventosDestacados; track evento.id) {
+            <div class="col-lg-4 col-md-6">
+            <a class="evento-card" [routerLink]="['/eventos', evento.id]">
+                <div class="card-img-wrapper">
+                <img [src]="evento.imagen" [alt]="evento.titulo" class="card-img"/>
+                <div class="card-img-gradient"></div>
+                <span class="estado-badge" [ngClass]="getBadgeClass(evento.estado)">{{ evento.estado }}</span>
+                </div>
+                <div class="card-body-custom">
+                <h5 class="card-title-custom">{{ evento.titulo }}</h5>
+                <p class="card-info"><span class="card-info-icon">📅</span>{{ evento.fecha }} • {{ evento.hora }}</p>
+                <p class="card-info"><span class="card-info-icon">📍</span>{{ evento.lugar }}</p>
+                <p class="card-info"><span class="card-info-icon">👥</span>{{ evento.aforo }} lugares disponibles</p>
+                <div class="card-footer-custom">
+                    <span class="precio">€{{ evento.precio }}<small> / persona</small></span>
+                    <span class="tipo-badge">{{ evento.tipo }}</span>
+                </div>
+                </div>
+            </a>
+            </div>
+        }
+        </div>
     </div>
     </section>
 
     <!-- CTA -->
-    <section class="cta-section container mb-5">
-    <div class="cta-box">
-        <h3>¿Organizas eventos?</h3>
-        <p>Únete a EventoPass y llega a miles de personas interesadas en tus eventos</p>
-        <button class="btn-cta">Empieza ahora</button>
+    <section class="cta-section">
+    <div class="container">
+        <div class="cta-box">
+        <div class="cta-gradient"></div>
+        <div class="cta-content">
+            <h3>¿Organizas eventos?</h3>
+            <p>Únete a EventoPass y llega a miles de personas interesadas en tus eventos</p>
+            <button class="btn-cta">Empieza ahora</button>
+        </div>
+        </div>
     </div>
     </section>
