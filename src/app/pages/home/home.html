@@ -71,9 +71,9 @@
                 </div>
                 <div class="card-body-custom">
                 <h5 class="card-title-custom">{{ evento.titulo }}</h5>
-                <p class="card-info"><span class="card-info-icon">📅</span>{{ evento.fecha }} • {{ evento.hora }}</p>
-                <p class="card-info"><span class="card-info-icon">📍</span>{{ evento.lugar }}</p>
-                <p class="card-info"><span class="card-info-icon">👥</span>{{ evento.aforo }} lugares disponibles</p>
+                <p class="card-info"><span class="card-info-icon"><i class="bi bi-calendar-event"></i></span>{{ evento.fecha }} • {{ evento.hora }}</p>
+                <p class="card-info"><span class="card-info-icon"><i class="bi bi-geo-alt-fill"></i></span>{{ evento.lugar }}</p>
+                <p class="card-info"><span class="card-info-icon"><i class="bi bi-people-fill"></i></span>{{ evento.aforo }} lugares disponibles</p>
                 <div class="card-footer-custom">
                     <span class="precio">€{{ evento.precio }}<small> / persona</small></span>
                     <span class="tipo-badge">{{ evento.tipo }}</span>
