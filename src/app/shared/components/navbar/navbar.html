@@ -1,30 +1,32 @@
-<nav class="navbar navbar-expand-lg" style="background-color: var(--bg-navbar);">
-  <div class="container">
-    
-    <a class="navbar-brand d-flex align-items-center gap-2" routerLink="/">
-      <div class="logo-icon">🎟️</div>
-      <span class="brand-name">EventoPass</span>
-    </a>
+    <nav class="navbar navbar-expand-lg" style="background-color: var(--bg-navbar);">
+    <div class="container">
+        
+        <a class="navbar-brand d-flex align-items-center gap-2" routerLink="/">
+        <div class="logo-box">
+        <i class="bi bi-ticket-perforated-fill"></i>
+        </div>
+        <span class="brand-name">EventoPass</span>
+        </a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="collapse navbar-collapse" id="navMenu">
-      <ul class="navbar-nav mx-auto gap-3">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Inicio</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/eventos" routerLinkActive="active">Eventos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/mis-reservas" routerLinkActive="active">Mis Reservas</a>
-        </li>
-      </ul>
+        <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav mx-auto gap-3">
+            <li class="nav-item">
+            <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Inicio</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" routerLink="/eventos" routerLinkActive="active">Eventos</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" routerLink="/mis-reservas" routerLinkActive="active">Mis Reservas</a>
+            </li>
+        </ul>
 
-      <button class="btn btn-primary-custom">Iniciar sesión</button>
+        <button class="btn btn-primary-custom">Iniciar sesión</button>
+        </div>
+
     </div>
-
-  </div>
-</nav>
+    </nav>
