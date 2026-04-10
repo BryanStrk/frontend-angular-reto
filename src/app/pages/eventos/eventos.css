@@ -1,11 +1,29 @@
+.section-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: white;
+}
+
+.eventos-count {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* LAYOUT */
 .eventos-layout {
   display: flex;
   gap: 2rem;
   align-items: flex-start;
 }
 
+.eventos-content {
+  flex: 1;
+  min-width: 0;
+}
+
+/* SIDEBAR */
 .filtros-sidebar {
-  width: 220px;
+  width: 240px;
   flex-shrink: 0;
   background: rgba(26, 26, 46, 0.6);
   border: 1px solid #222;
@@ -15,14 +33,201 @@
   top: 80px;
 }
 
-.eventos-content {
-  flex: 1;
-  min-width: 0;
+.filtro-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-/* Móvil: ocultar sidebar, mostrar panel */
+.filtro-titulo {
+  color: white;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  font-size: 0.95rem;
+}
+
+.filtro-radio {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.filtro-radio input[type="radio"] {
+  accent-color: var(--primary);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.filtro-radio:hover span { color: white; }
+
+.precio-slider {
+  width: 100%;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+.precio-range-labels {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+/* PANEL MÓVIL */
 .filtros-panel { display: none; }
 
+.filtros-panel-visible {
+  background: rgba(26, 26, 46, 0.6);
+  border: 1px solid #222;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.filtros-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  color: white;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.filtros-header:hover { background: rgba(255,255,255,0.05); }
+
+.filtros-body {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  border-top: 1px solid #222;
+}
+
+/* CARDS */
+.evento-card {
+  background: rgba(26, 26, 46, 0.5);
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.05);
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.evento-card:hover {
+  border-color: rgba(255,255,255,0.2);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(124, 58, 237, 0.3);
+}
+
+.card-img-wrapper {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.evento-card:hover .card-img { transform: scale(1.05); }
+
+.estado-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.badge-activo {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10B981;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+
+.badge-agotado {
+  background: rgba(239, 68, 68, 0.15);
+  color: #EF4444;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+.badge-cancelado {
+  background: rgba(107, 114, 128, 0.15);
+  color: #6B7280;
+  border: 1px solid rgba(107, 114, 128, 0.4);
+}
+
+.card-body-custom { padding: 1.25rem; }
+
+.card-title-custom {
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+  transition: color 0.2s;
+}
+
+.evento-card:hover .card-title-custom { color: var(--primary); }
+
+.card-info {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 0.35rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.card-info i { color: var(--primary); }
+
+.card-footer-custom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.precio {
+  font-size: 1.4rem;
+  font-weight: 700;
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.precio small {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  -webkit-text-fill-color: var(--text-muted);
+}
+
+.tipo-badge {
+  background: rgba(124, 58, 237, 0.15);
+  color: var(--primary);
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* RESPONSIVE */
 @media (max-width: 768px) {
   .eventos-layout { flex-direction: column; }
   .filtros-sidebar { display: none; }
