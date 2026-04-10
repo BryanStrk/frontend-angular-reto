@@ -6,7 +6,7 @@
     <div class="row g-4 mb-5">
         <div class="col-md-4">
         <div class="stat-card">
-            <span class="stat-icon">🎟️</span>
+            <span class="stat-icon"><i class="bi bi-ticket-perforated-fill"></i></span>
             <div>
             <p class="stat-label">Total reservas</p>
             <p class="stat-value">{{ totalReservas }}</p>
@@ -15,7 +15,7 @@
         </div>
         <div class="col-md-4">
         <div class="stat-card">
-            <span class="stat-icon">✅</span>
+            <span class="stat-icon"><i class="bi bi-check-circle-fill"></i></span>
             <div>
             <p class="stat-label">Próximos eventos</p>
             <p class="stat-value">{{ reservasActivas }}</p>
@@ -24,7 +24,7 @@
         </div>
         <div class="col-md-4">
         <div class="stat-card">
-            <span class="stat-icon">💶</span>
+            <span class="stat-icon"><i class="bi bi-cash-coin"></i></span>
             <div>
             <p class="stat-label">Total gastado</p>
             <p class="stat-value">€{{ totalGastado }}</p>
@@ -39,9 +39,9 @@
         <img [src]="reserva.imagen" [alt]="reserva.evento" class="reserva-img"/>
         <div class="reserva-info">
             <h5 class="reserva-titulo">{{ reserva.evento }}</h5>
-            <p class="reserva-meta">📅 {{ reserva.fecha }} • {{ reserva.hora }}</p>
-            <p class="reserva-meta">📍 {{ reserva.lugar }}</p>
-            <p class="reserva-meta">🎟️ {{ reserva.entradas }} entrada(s) • €{{ reserva.precio * reserva.entradas }} total</p>
+            <p class="reserva-meta"><i class="bi bi-calendar-event me-1"></i>{{ reserva.fecha }} • {{ reserva.hora }}</p>
+            <p class="reserva-meta"><i class="bi bi-geo-alt-fill me-1"></i>{{ reserva.lugar }}</p>
+            <p class="reserva-meta"><i class="bi bi-ticket-perforated me-1"></i>{{ reserva.entradas }} entrada(s) • €{{ reserva.precio * reserva.entradas }} total</p>
         </div>
         <div class="reserva-actions">
             <span class="estado-badge" [ngClass]="getBadgeClass(reserva.estado)">{{ reserva.estado }}</span>
