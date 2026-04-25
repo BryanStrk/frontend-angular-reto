@@ -1,37 +1,47 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
+import { Evento } from '../../core/models/evento.model';
+import { EventoService } from '../../core/services/evento';
+import { ReservaService } from '../../core/services/reserva';
 
 @Component({
   selector: 'app-evento-detalle',
-  imports: [RouterLink, CommonModule ,FormsModule],
+  imports: [RouterLink, CommonModule, FormsModule],
   templateUrl: './evento-detalle.html',
   styleUrl: './evento-detalle.css'
 })
 export class EventoDetalleComponent implements OnInit {
   cantidadEntradas = 1;
-  evento: any = null;
+  evento: Evento | null = null;
 
-  eventos = [
-    { id: 1, titulo: 'Concierto Rock Fest 2026', descripcion: 'El festival de rock más grande del año. Artistas internacionales, escenarios espectaculares y una noche inolvidable.', fecha: '15 jun 2026', hora: '18:00', lugar: 'Estadio Nacional, Madrid', precio: 85, tipo: 'Música', estado: 'ACTIVO', aforo: 450, entradasVendidas: 150, imagen: 'https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?w=1200' },
-    { id: 2, titulo: 'Festival de Jazz Internacional', descripcion: 'Una noche mágica con los mejores músicos de jazz del mundo en un entorno incomparable.', fecha: '20 may 2026', hora: '20:30', lugar: 'Teatro Real, Barcelona', precio: 65, tipo: 'Música', estado: 'AGOTADO', aforo: 300, entradasVendidas: 300, imagen: 'https://images.unsplash.com/photo-1415201364774-f6f0bb35f28f?w=1200' },
-    { id: 3, titulo: 'Conferencia Tech Summit 2026', descripcion: 'El evento tecnológico del año. Ponentes de las mejores empresas del sector, workshops y networking.', fecha: '10 jul 2026', hora: '09:00', lugar: 'Centro de Convenciones, Valencia', precio: 150, tipo: 'Tecnología', estado: 'ACTIVO', aforo: 500, entradasVendidas: 220, imagen: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200' },
-    { id: 4, titulo: 'Stand-up Comedy Night', descripcion: 'Una noche de risas garantizadas con los mejores cómicos del panorama nacional.', fecha: '25 abr 2026', hora: '21:00', lugar: 'Club de Comedia, Sevilla', precio: 30, tipo: 'Entretenimiento', estado: 'ACTIVO', aforo: 200, entradasVendidas: 80, imagen: 'https://images.unsplash.com/photo-1527224538127-2104bb71c51b?w=1200' },
-  ];
-
-  
-
-  constructor(private route: ActivatedRoute, private sanitizer: DomSanitizer) {}
-
-  getHeroStyle(): SafeStyle {
-    return this.sanitizer.bypassSecurityTrustStyle(`url(${this.evento.imagen})`);
-  }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private sanitizer: DomSanitizer,
+    private eventoService: EventoService,
+    private reservaService: ReservaService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.evento = this.eventos.find(e => e.id === id) || this.eventos[0];
+
+    this.eventoService.obtenerEventoPorId(id).subscribe({
+      next: (evento) => {
+        this.evento = evento;
+        this.cdr.detectChanges();
+      },
+      error: (error) => {
+        console.error('Error al cargar detalle del evento', error);
+      }
+    });
+  }
+
+  getHeroStyle(): SafeStyle {
+    return this.sanitizer.bypassSecurityTrustStyle(`url(${this.evento?.imagen || ''})`);
   }
 
   get totalPrecio(): number {
@@ -49,11 +59,41 @@ export class EventoDetalleComponent implements OnInit {
   }
 
   decrementar() {
-    if (this.cantidadEntradas > 1) this.cantidadEntradas--;
+    if (this.cantidadEntradas > 1) {
+      this.cantidadEntradas--;
+    }
+  }
+
+  reservar() {
+    if (!this.evento) {
+      return;
+    }
+
+    const usuarioGuardado = localStorage.getItem('usuario');
+
+    if (!usuarioGuardado) {
+      this.router.navigate(['/login']);
+      return;
+    }
+
+    const usuario = JSON.parse(usuarioGuardado);
+
+    this.reservaService.crearReserva({
+      usuarioId: usuario.id,
+      eventoId: this.evento.id,
+      numEntradas: this.cantidadEntradas
+    }).subscribe({
+      next: () => {
+        this.router.navigate(['/mis-reservas']);
+      },
+      error: (error) => {
+        console.error('Error al crear reserva', error);
+      }
+    });
   }
 
   getBadgeClass(estado: string): string {
-    switch(estado) {
+    switch (estado) {
       case 'ACTIVO': return 'badge-activo';
       case 'AGOTADO': return 'badge-agotado';
       case 'CANCELADO': return 'badge-cancelado';

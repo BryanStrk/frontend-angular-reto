@@ -1,6 +1,25 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Evento } from '../models/evento.model';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class Evento {}
+export class EventoService {
+
+  private apiUrl = 'http://localhost:8082/api/eventos';
+
+  constructor(private http: HttpClient) {}
+
+  obtenerEventos() {
+    return this.http.get<Evento[]>(this.apiUrl);
+  }
+
+  obtenerEventosDestacados() {
+    return this.http.get<Evento[]>(`${this.apiUrl}/destacados`);
+  }
+
+  obtenerEventoPorId(id: number) {
+    return this.http.get<Evento>(`${this.apiUrl}/${id}`);
+  }
+}

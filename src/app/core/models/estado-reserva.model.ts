@@ -1,0 +1,1 @@
+export type EstadoReserva = 'PENDIENTE' | 'CONFIRMADA' | 'CANCELADA';
