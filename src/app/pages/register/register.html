@@ -1,0 +1,38 @@
+<div class="register-container">
+  <div class="register-card">
+    <h2>Crear cuenta</h2>
+
+    <form (ngSubmit)="registrar()">
+
+      <div>
+        <label>Nombre</label>
+        <input type="text" name="nombre" [(ngModel)]="nombre" required>
+      </div>
+
+      <div>
+        <label>Apellidos</label>
+        <input type="text" name="apellidos" [(ngModel)]="apellidos" required>
+      </div>
+
+      <div>
+        <label>Email</label>
+        <input type="email" name="email" [(ngModel)]="email" required>
+      </div>
+
+      <div>
+        <label>Teléfono</label>
+        <input type="text" name="telefono" [(ngModel)]="telefono">
+      </div>
+
+      <div>
+        <label>Contraseña</label>
+        <input type="password" name="password" [(ngModel)]="password" required>
+      </div>
+
+      <p class="error" *ngIf="error">{{ error }}</p>
+
+      <button type="submit">Registrarme</button>
+
+    </form>
+  </div>
+</div>

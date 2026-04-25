@@ -1,32 +1,61 @@
-    <nav class="navbar navbar-expand-lg" style="background-color: var(--bg-navbar);">
-    <div class="container">
-        
-        <a class="navbar-brand d-flex align-items-center gap-2" routerLink="/">
-        <div class="logo-box">
+<nav class="navbar navbar-expand-lg" style="background-color: var(--bg-navbar);">
+  <div class="container">
+
+    <a class="navbar-brand d-flex align-items-center gap-2" routerLink="/">
+      <div class="logo-box">
         <i class="bi bi-ticket-perforated-fill"></i>
-        </div>
-        <span class="brand-name">EventoPass</span>
-        </a>
+      </div>
+      <span class="brand-name">EventoPass</span>
+    </a>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-        <span class="navbar-toggler-icon"></span>
-        </button>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-        <div class="collapse navbar-collapse" id="navMenu">
-        <ul class="navbar-nav mx-auto gap-3">
-            <li class="nav-item">
-            <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Inicio</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" routerLink="/eventos" routerLinkActive="active">Eventos</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" routerLink="/mis-reservas" routerLinkActive="active">Mis Reservas</a>
-            </li>
-        </ul>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav mx-auto gap-3">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            Inicio
+          </a>
+        </li>
 
-        <button class="btn btn-primary-custom">Iniciar sesión</button>
-        </div>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/eventos" routerLinkActive="active">
+            Eventos
+          </a>
+        </li>
 
+        @if (estaLogueado()) {
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/mis-reservas" routerLinkActive="active">
+              Mis Reservas
+            </a>
+          </li>
+        }
+      </ul>
+
+      <div class="d-flex align-items-center gap-3">
+        @if (estaLogueado()) {
+          <span class="nav-user">
+            <i class="bi bi-person-circle"></i>
+            {{ obtenerNombreUsuario() }}
+          </span>
+
+          <button class="btn btn-logout" (click)="cerrarSesion()">
+            Cerrar sesión
+          </button>
+        } @else {
+          <a class="nav-link" routerLink="/login">
+            Iniciar sesión
+          </a>
+
+          <a class="btn btn-primary-custom" routerLink="/register">
+            Regístrate
+          </a>
+        }
+      </div>
     </div>
-    </nav>
+
+  </div>
+</nav>
