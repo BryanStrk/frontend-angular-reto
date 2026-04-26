@@ -7,7 +7,7 @@ import { AuthResponseDto, RegistroUsuarioDto, UsuarioLoginDto } from '../models/
 })
 export class AuthService {
 
-  private apiUrl = 'http://localhost:8082/auth';
+  private apiUrl = 'http://217.154.181.229:8082/auth';
 
   constructor(private http: HttpClient) {}
 
