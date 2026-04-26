@@ -32,4 +32,14 @@ export class Navbar {
 
     this.router.navigate(['/login']);
   }
+
+  obtenerRolUsuario(): string {
+  const usuarioGuardado = localStorage.getItem('usuario');
+
+  if (!usuarioGuardado) {
+    return '';
+  }
+
+  return JSON.parse(usuarioGuardado).rol;
+}
 }

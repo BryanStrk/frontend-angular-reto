@@ -1,0 +1,310 @@
+.admin-header {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.admin-header h2 {
+  color: var(--text-white);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.admin-header p {
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.btn-primary-custom {
+  background: var(--primary-gradient);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 24px;
+  font-weight: 600;
+  transition: opacity 0.2s;
+}
+
+.btn-primary-custom:hover {
+  opacity: 0.9;
+}
+
+.admin-alerta {
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.admin-alerta-exito {
+  color: #10B981;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+}
+
+.admin-alerta-error {
+  color: #EF4444;
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+}
+
+.admin-form-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  padding: 1.5rem;
+}
+
+.admin-form-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.admin-form-header h3 {
+  color: var(--text-white);
+  font-weight: 700;
+  margin: 0;
+}
+
+.btn-cerrar {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.btn-cerrar:hover {
+  color: var(--text-white);
+}
+
+.admin-form-card label {
+  display: block;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+}
+
+.admin-form-card input,
+.admin-form-card select,
+.admin-form-card textarea {
+  width: 100%;
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 10px 12px;
+  background: rgba(255,255,255,0.08);
+  color: var(--text-white);
+  outline: none;
+}
+
+.admin-form-card input:focus,
+.admin-form-card select:focus,
+.admin-form-card textarea:focus {
+  border-color: var(--primary);
+}
+
+.admin-form-card option {
+  background: #111111;
+  color: white;
+}
+
+.admin-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.btn-secundario {
+  background: transparent;
+  color: #D1D5DB;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 10px;
+  padding: 10px 24px;
+  font-weight: 600;
+}
+
+.btn-secundario:hover {
+  color: white;
+  border-color: var(--primary);
+  background: rgba(124, 58, 237, 0.15);
+}
+
+.admin-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.admin-evento-card {
+  width: 100%;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 18px;
+  padding: 1rem;
+  display: flex;
+  gap: 1rem;
+  overflow: hidden;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.admin-evento-card:hover {
+  border-color: var(--border-hover);
+  box-shadow: 0 12px 28px rgba(124, 58, 237, 0.12);
+}
+
+.admin-evento-img {
+  width: 150px;
+  height: 110px;
+  min-width: 150px;
+  border-radius: 14px;
+  object-fit: cover;
+  display: block;
+}
+
+.admin-evento-contenido {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.admin-evento-superior {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.admin-evento-titulo {
+  color: var(--text-white);
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 0.35rem 0;
+}
+
+.admin-evento-desc {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin: 0;
+  max-width: 720px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.admin-evento-detalles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-top: 1rem;
+}
+
+.admin-evento-detalles span {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.admin-evento-detalles i {
+  color: var(--primary);
+}
+
+.admin-evento-acciones {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.estado-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: fit-content;
+  padding: 5px 13px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.badge-activo {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10B981;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+
+.badge-agotado {
+  background: rgba(239, 68, 68, 0.15);
+  color: #EF4444;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+.badge-cancelado {
+  background: rgba(107, 114, 128, 0.15);
+  color: #6B7280;
+  border: 1px solid rgba(107, 114, 128, 0.4);
+}
+
+.btn-editar {
+  background: transparent;
+  color: var(--primary);
+  border: 1px solid rgba(124, 58, 237, 0.4);
+  border-radius: 8px;
+  padding: 6px 16px;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.btn-editar:hover {
+  background: rgba(124, 58, 237, 0.15);
+}
+
+.admin-vacio {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 18px;
+  padding: 3rem;
+  text-align: center;
+}
+
+.admin-vacio p {
+  color: var(--text-muted);
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .admin-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .admin-evento-card {
+    flex-direction: column;
+  }
+
+  .admin-evento-img {
+    width: 100%;
+    height: 180px;
+    min-width: 0;
+  }
+
+  .admin-evento-superior {
+    flex-direction: column;
+  }
+
+  .admin-evento-acciones,
+  .admin-form-actions {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+}

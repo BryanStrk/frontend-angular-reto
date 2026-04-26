@@ -1,0 +1,193 @@
+<div class="container py-5">
+
+  <div class="admin-header mb-4">
+    <div>
+      <h2>Gestión de eventos</h2>
+      <p>Panel privado para crear y editar eventos.</p>
+    </div>
+
+    <button class="btn-primary-custom" (click)="abrirNuevoEvento()">
+      Nuevo evento
+    </button>
+  </div>
+
+  @if (mensajeExito) {
+    <div class="admin-alerta admin-alerta-exito">
+      {{ mensajeExito }}
+    </div>
+  }
+
+  @if (mensajeError) {
+    <div class="admin-alerta admin-alerta-error">
+      {{ mensajeError }}
+    </div>
+  }
+
+  @if (formularioAbierto) {
+    <div class="admin-form-card mb-4">
+      <div class="admin-form-header">
+        <h3>{{ modoEdicion ? 'Editar evento' : 'Nuevo evento' }}</h3>
+
+        <button class="btn-cerrar" (click)="cerrarFormulario()">
+          ×
+        </button>
+      </div>
+
+      <form (ngSubmit)="guardarEvento()">
+        <div class="row g-3">
+
+          <div class="col-md-6">
+            <label>Título</label>
+            <input type="text" name="titulo" [(ngModel)]="eventoFormulario.titulo">
+          </div>
+
+          <div class="col-md-6">
+            <label>Tipo</label>
+            <select name="tipo" [(ngModel)]="eventoFormulario.tipo">
+              @for (tipo of tipos; track tipo) {
+                <option [value]="tipo">{{ tipo }}</option>
+              }
+            </select>
+          </div>
+
+          <div class="col-12">
+            <label>Descripción</label>
+            <textarea name="descripcion" rows="3" [(ngModel)]="eventoFormulario.descripcion"></textarea>
+          </div>
+
+          <div class="col-md-4">
+            <label>Fecha</label>
+            <input type="date" name="fecha" [(ngModel)]="eventoFormulario.fecha">
+          </div>
+
+          <div class="col-md-4">
+            <label>Hora</label>
+            <input type="time" name="hora" [(ngModel)]="eventoFormulario.hora">
+          </div>
+
+          <div class="col-md-4">
+            <label>Estado</label>
+            <select name="estado" [(ngModel)]="eventoFormulario.estado">
+              @for (estado of estados; track estado) {
+                <option [value]="estado">{{ estado }}</option>
+              }
+            </select>
+          </div>
+
+          <div class="col-md-8">
+            <label>Lugar</label>
+            <input type="text" name="lugar" [(ngModel)]="eventoFormulario.lugar">
+          </div>
+
+          <div class="col-md-4">
+            <label>Precio</label>
+            <input type="number" name="precio" [(ngModel)]="eventoFormulario.precio">
+          </div>
+
+          <div class="col-md-4">
+            <label>Aforo máximo</label>
+            <input type="number" name="aforo" [(ngModel)]="eventoFormulario.aforo">
+          </div>
+
+          <div class="col-md-4">
+            <label>Entradas vendidas</label>
+            <input type="number" name="entradasVendidas" [(ngModel)]="eventoFormulario.entradasVendidas">
+          </div>
+
+          <div class="col-md-4">
+            <label>Destacado</label>
+            <select name="destacado" [(ngModel)]="eventoFormulario.destacado">
+              <option [ngValue]="true">Sí</option>
+              <option [ngValue]="false">No</option>
+            </select>
+          </div>
+
+          <div class="col-12">
+            <label>Imagen URL</label>
+            <input type="text" name="imagen" [(ngModel)]="eventoFormulario.imagen">
+          </div>
+
+        </div>
+
+        <div class="admin-form-actions">
+          <button type="button" class="btn-secundario" (click)="cerrarFormulario()">
+            Cancelar
+          </button>
+
+          <button type="submit" class="btn-primary-custom" [disabled]="guardando">
+            {{ guardando ? 'Guardando...' : 'Guardar' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  }
+
+  <div class="admin-lista">
+
+    @for (evento of eventos; track evento.id) {
+      <div class="admin-evento-card">
+
+        <img
+          [src]="evento.imagen"
+          [alt]="evento.titulo"
+          class="admin-evento-img"
+        >
+
+        <div class="admin-evento-contenido">
+          <div class="admin-evento-superior">
+            <div>
+              <h3 class="admin-evento-titulo">{{ evento.titulo }}</h3>
+              <p class="admin-evento-desc">{{ evento.descripcion }}</p>
+            </div>
+
+            <span class="estado-badge" [ngClass]="obtenerClaseEstado(evento.estado)">
+              {{ evento.estado }}
+            </span>
+          </div>
+
+          <div class="admin-evento-detalles">
+            <span>
+              <i class="bi bi-calendar-event"></i>
+              {{ evento.fecha }} • {{ evento.hora }}
+            </span>
+
+            <span>
+              <i class="bi bi-geo-alt-fill"></i>
+              {{ evento.lugar }}
+            </span>
+
+            <span>
+              <i class="bi bi-tag-fill"></i>
+              {{ evento.tipo }}
+            </span>
+
+            <span>
+              <i class="bi bi-cash-coin"></i>
+              €{{ evento.precio }}
+            </span>
+
+            <span>
+              <i class="bi bi-people-fill"></i>
+              {{ evento.aforo }} disponibles
+            </span>
+          </div>
+
+          <div class="admin-evento-acciones">
+            <button class="btn-editar" (click)="abrirEditarEvento(evento)">
+              Editar
+            </button>
+          </div>
+        </div>
+
+      </div>
+    }
+
+    @if (eventos.length === 0) {
+      <div class="admin-vacio">
+        <p>No hay eventos registrados.</p>
+      </div>
+    }
+
+  </div>
+
+</div>
