@@ -22,4 +22,12 @@ export class EventoService {
   obtenerEventoPorId(id: number) {
     return this.http.get<Evento>(`${this.apiUrl}/${id}`);
   }
+
+  crearEvento(evento: Partial<Evento>) {
+    return this.http.post<Evento>(this.apiUrl, evento);
+  }
+
+  actualizarEvento(id: number, evento: Partial<Evento>) {
+    return this.http.put<Evento>(`${this.apiUrl}/${id}`, evento);
+  }
 }
