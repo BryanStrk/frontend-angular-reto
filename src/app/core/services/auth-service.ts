@@ -7,7 +7,7 @@ import { AuthResponseDto, RegistroUsuarioDto, UsuarioLoginDto } from '../models/
 })
 export class AuthService {
 
-  private apiUrl = 'http://217.154.181.229:8082/auth';
+  private apiUrl = 'https://api.appdeploytest.com/auth';
 
   constructor(private http: HttpClient) {}
 
@@ -29,6 +29,6 @@ export class AuthService {
   }
 
   registrar(datos: RegistroUsuarioDto) {
-  return this.http.post<AuthResponseDto>(`${this.apiUrl}/register`, datos);
-}
+    return this.http.post<AuthResponseDto>(`${this.apiUrl}/register`, datos);
+  }
 }

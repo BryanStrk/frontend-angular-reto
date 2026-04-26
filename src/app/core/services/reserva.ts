@@ -7,7 +7,7 @@ import { CrearReserva, Reserva } from '../models/reserva.model';
 })
 export class ReservaService {
 
-  private apiUrl = 'http://217.154.181.229:8082/api/reservas';
+  private apiUrl = 'https://api.appdeploytest.com/api/reservas';
 
   constructor(private http: HttpClient) {}
 
