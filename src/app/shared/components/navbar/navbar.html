@@ -1,43 +1,33 @@
 <nav class="navbar navbar-expand-lg" style="background-color: var(--bg-navbar)">
   <div class="container">
-    <a class="navbar-brand d-flex align-items-center gap-2" routerLink="/">
+    <a class="navbar-brand d-flex align-items-center gap-2" routerLink="/" (click)="cerrarMenu()">
       <div class="logo-box">
         <i class="bi bi-ticket-perforated-fill"></i>
       </div>
       <span class="brand-name">EventoPass</span>
     </a>
 
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navMenu"
-    >
+    <button class="navbar-toggler" type="button" (click)="toggleMenu()">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navMenu">
+    <div class="navbar-collapse custom-mobile-menu" [class.show]="menuAbierto">
       <ul class="navbar-nav mx-auto gap-3">
         <li class="nav-item">
-          <a
-            class="nav-link"
-            routerLink="/"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
+          <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="cerrarMenu()">
             Inicio
           </a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" routerLink="/eventos" routerLinkActive="active">
+          <a class="nav-link" routerLink="/eventos" routerLinkActive="active" (click)="cerrarMenu()">
             Eventos
           </a>
         </li>
 
         @if (obtenerRolUsuario() === 'ADMIN') {
           <li class="nav-item">
-            <a class="nav-link" routerLink="/admin/eventos" routerLinkActive="active">
+            <a class="nav-link" routerLink="/admin/eventos" routerLinkActive="active" (click)="cerrarMenu()">
               Gestión de eventos
             </a>
           </li>
@@ -45,14 +35,14 @@
 
         @if (estaLogueado()) {
           <li class="nav-item">
-            <a class="nav-link" routerLink="/mis-reservas" routerLinkActive="active">
+            <a class="nav-link" routerLink="/mis-reservas" routerLinkActive="active" (click)="cerrarMenu()">
               Mis Reservas
             </a>
           </li>
         }
       </ul>
 
-      <div class="d-flex align-items-center gap-3">
+      <div class="d-flex align-items-center gap-3 nav-actions">
         @if (estaLogueado()) {
           <span class="nav-user">
             <i class="bi bi-person-circle"></i>
@@ -63,11 +53,11 @@
             Cerrar sesión
           </button>
         } @else {
-          <a class="nav-link" routerLink="/login">
+          <a class="nav-link" routerLink="/login" (click)="cerrarMenu()">
             Iniciar sesión
           </a>
 
-          <a class="btn btn-primary-custom" routerLink="/register">
+          <a class="btn btn-primary-custom" routerLink="/register" (click)="cerrarMenu()">
             Regístrate
           </a>
         }

@@ -9,8 +9,17 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './navbar.css'
 })
 export class Navbar {
+  menuAbierto = false;
 
   constructor(private router: Router) {}
+
+  toggleMenu() {
+    this.menuAbierto = !this.menuAbierto;
+  }
+
+  cerrarMenu() {
+    this.menuAbierto = false;
+  }
 
   estaLogueado(): boolean {
     return !!localStorage.getItem('token');
@@ -26,20 +35,21 @@ export class Navbar {
     return JSON.parse(usuario).nombre;
   }
 
+  obtenerRolUsuario(): string {
+    const usuarioGuardado = localStorage.getItem('usuario');
+
+    if (!usuarioGuardado) {
+      return '';
+    }
+
+    return JSON.parse(usuarioGuardado).rol;
+  }
+
   cerrarSesion() {
     localStorage.removeItem('token');
     localStorage.removeItem('usuario');
 
+    this.cerrarMenu();
     this.router.navigate(['/login']);
   }
-
-  obtenerRolUsuario(): string {
-  const usuarioGuardado = localStorage.getItem('usuario');
-
-  if (!usuarioGuardado) {
-    return '';
-  }
-
-  return JSON.parse(usuarioGuardado).rol;
-}
 }
