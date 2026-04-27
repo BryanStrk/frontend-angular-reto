@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef, OnInit, ChangeDetectorRef } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Evento } from '../../core/models/evento.model';
 import { EventoService } from '../../core/services/evento';
@@ -17,8 +17,9 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private eventoService: EventoService,
-    private cdr: ChangeDetectorRef
-  ) { }
+    private cdr: ChangeDetectorRef,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.eventoService.obtenerEventosDestacados().subscribe({
@@ -29,6 +30,19 @@ export class HomeComponent implements OnInit {
       error: (error) => {
         console.error('Error al cargar eventos destacados', error);
       }
+    });
+  }
+
+  buscarEventos(texto: string) {
+    const busqueda = texto.trim();
+
+    if (!busqueda) {
+      this.router.navigate(['/eventos']);
+      return;
+    }
+
+    this.router.navigate(['/eventos'], {
+      queryParams: { q: busqueda }
     });
   }
 

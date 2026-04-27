@@ -9,25 +9,47 @@
     <aside class="filtros-sidebar">
       <div class="filtro-grupo">
         <p class="filtro-titulo">Categoría</p>
+
         @for (tipo of tipos; track tipo) {
           <label class="filtro-radio">
-            <input type="radio" name="tipo" [value]="tipo === 'Todos' ? 'TODOS' : tipo" [(ngModel)]="filtroTipo"/>
-            <span>{{ tipo }}</span>
+            <input
+              type="radio"
+              name="tipo"
+              [value]="tipo"
+              [(ngModel)]="filtroTipo"
+            />
+            <span>{{ tipo === 'TODOS' ? 'Todos' : tipo }}</span>
           </label>
         }
       </div>
+
       <div class="filtro-grupo mt-4">
         <p class="filtro-titulo">Estado</p>
+
         @for (estado of estados; track estado) {
           <label class="filtro-radio">
-            <input type="radio" name="estado" [value]="estado" [(ngModel)]="filtroEstado"/>
+            <input
+              type="radio"
+              name="estado"
+              [value]="estado"
+              [(ngModel)]="filtroEstado"
+            />
             <span>{{ estado === 'TODOS' ? 'Todos' : estado }}</span>
           </label>
         }
       </div>
+
       <div class="filtro-grupo mt-4">
         <p class="filtro-titulo">Rango de precio</p>
-        <input type="range" class="precio-slider" min="0" max="200" [(ngModel)]="precioMax"/>
+
+        <input
+          type="range"
+          class="precio-slider"
+          min="0"
+          max="200"
+          [(ngModel)]="precioMax"
+        />
+
         <div class="precio-range-labels">
           <span>€0</span>
           <span>€{{ precioMax }}</span>
@@ -44,29 +66,52 @@
           <span><i class="bi bi-funnel me-2"></i>Filtros</span>
           <i class="bi" [ngClass]="filtrosAbiertos ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
         </div>
+
         @if (filtrosAbiertos) {
           <div class="filtros-body">
             <div class="filtro-grupo">
               <p class="filtro-titulo">Categoría</p>
+
               @for (tipo of tipos; track tipo) {
                 <label class="filtro-radio">
-                  <input type="radio" name="tipo-mobile" [value]="tipo === 'Todos' ? 'TODOS' : tipo" [(ngModel)]="filtroTipo"/>
-                  <span>{{ tipo }}</span>
+                  <input
+                    type="radio"
+                    name="tipo-mobile"
+                    [value]="tipo"
+                    [(ngModel)]="filtroTipo"
+                  />
+                  <span>{{ tipo === 'TODOS' ? 'Todos' : tipo }}</span>
                 </label>
               }
             </div>
+
             <div class="filtro-grupo">
               <p class="filtro-titulo">Estado</p>
+
               @for (estado of estados; track estado) {
                 <label class="filtro-radio">
-                  <input type="radio" name="estado-mobile" [value]="estado" [(ngModel)]="filtroEstado"/>
+                  <input
+                    type="radio"
+                    name="estado-mobile"
+                    [value]="estado"
+                    [(ngModel)]="filtroEstado"
+                  />
                   <span>{{ estado === 'TODOS' ? 'Todos' : estado }}</span>
                 </label>
               }
             </div>
+
             <div class="filtro-grupo">
               <p class="filtro-titulo">Rango de precio</p>
-              <input type="range" class="precio-slider" min="0" max="200" [(ngModel)]="precioMax"/>
+
+              <input
+                type="range"
+                class="precio-slider"
+                min="0"
+                max="200"
+                [(ngModel)]="precioMax"
+              />
+
               <div class="precio-range-labels">
                 <span>€0</span>
                 <span>€{{ precioMax }}</span>
@@ -82,22 +127,41 @@
           <div class="col-lg-4 col-md-6 col-12">
             <div class="evento-card" [routerLink]="['/eventos', evento.id]">
               <div class="card-img-wrapper">
-                <img [src]="evento.imagen" [alt]="evento.titulo" class="card-img"/>
-                <span class="estado-badge" [ngClass]="getBadgeClass(evento.estado)">{{ evento.estado }}</span>
+                <img [src]="evento.imagen" [alt]="evento.titulo" class="card-img" />
+                <span class="estado-badge" [ngClass]="getBadgeClass(evento.estado)">
+                  {{ evento.estado }}
+                </span>
               </div>
+
               <div class="card-body-custom">
                 <h5 class="card-title-custom">{{ evento.titulo }}</h5>
-                <p class="card-info"><i class="bi bi-calendar-event me-1"></i>{{ evento.fecha }} • {{ evento.hora }}</p>
-                <p class="card-info"><i class="bi bi-geo-alt-fill me-1"></i>{{ evento.lugar }}</p>
-                <p class="card-info"><i class="bi bi-people-fill me-1"></i>{{ evento.aforo }} lugares disponibles</p>
+
+                <p class="card-info">
+                  <i class="bi bi-calendar-event me-1"></i>
+                  {{ evento.fecha }} • {{ evento.hora }}
+                </p>
+
+                <p class="card-info">
+                  <i class="bi bi-geo-alt-fill me-1"></i>
+                  {{ evento.lugar }}
+                </p>
+
+                <p class="card-info">
+                  <i class="bi bi-people-fill me-1"></i>
+                  {{ evento.aforo }} lugares disponibles
+                </p>
+
                 <div class="card-footer-custom">
-                  <span class="precio">€{{ evento.precio }}<small> / persona</small></span>
+                  <span class="precio">
+                    €{{ evento.precio }}<small> / persona</small>
+                  </span>
                   <span class="tipo-badge">{{ evento.tipo }}</span>
                 </div>
               </div>
             </div>
           </div>
         }
+
         @if (eventosFiltrados.length === 0) {
           <div class="col-12 text-center py-5">
             <p class="text-muted">No hay eventos con los filtros seleccionados.</p>

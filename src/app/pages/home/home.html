@@ -10,8 +10,17 @@
         <p class="hero-subtitle">Encuentra y reserva experiencias increíbles cerca de ti</p>
         <div class="search-bar">
         <span class="search-icon"><i class="bi bi-search"></i></span>
-        <input type="text" placeholder="Buscar eventos, lugares, categorías..." class="search-input"/>
-        <button class="btn-search">Buscar</button>
+        <input
+        #busqueda
+        type="text"
+        placeholder="Buscar eventos, lugares, categorías..."
+        class="search-input"
+        (keyup.enter)="buscarEventos(busqueda.value)"
+        />
+
+        <button class="btn-search" (click)="buscarEventos(busqueda.value)">
+        Buscar
+        </button>
         </div>
     </div>
     </section>
